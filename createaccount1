@@ -1,0 +1,16 @@
+#bug 1
+SystemUtil.Run "iexplore.exe","http://automationpractice.com/"
+Browser("My Store").page("My store").Sync
+Browser("My Store").page("My store").WebButton("Sign In").Click
+waiting until the loading page is done
+Browser("Login - My Store").page("Create an account").Sync
+Browser("Login - My Store").page("Create an account").WebEdit("Email Address").Set("acacea@yahoo.com")
+#dissable the connection
+Browser("Login - My Store").page("Create an account").WebButton("Create an Account").Click
+waiting until the loading page  is done
+Browser("Login - My Store").page("Create an account").Sync
+verification to see if the create account successfull
+If Browser("title:=Login*").page("title:=Create an account*").link("innertext:=autentication*").exist then
+Msgbox " successfull create account 1"
+End if
+Browser("title:=Login*").page("title:=Create an account*").close
