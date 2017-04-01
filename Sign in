@@ -1,0 +1,17 @@
+#sign in
+SystemUtil.Run "iexplore.exe","http://automationpractice.com/"
+Browser("My Store").page("My store").Sync
+Browser("My Store").page("My store").WebButton("Sign In").Click
+waiting until the loading page is done
+Browser("Login - My Store").page("Login - My store").Sync
+Browser("Login - My Store").page("Login - My store").WebEdit("Email Address").Set("acacea@yahoo.com")
+Browser("Login - My Store").page("Login - My store").WebEdit("Password").Set("123456")
+Browser("Login - My Store").page("Login - My store").WebButton("Sign In").Click
+waiting until the signing in is done
+Browser("My Acoount - My Store").page(" My Acoount - My Store").Sync
+verification to see if thr login successfull
+If Browser("title:=My Account*").page("title:=My Account*").link("innertext:=my-account*").exist then
+Msgbox " successfull login"
+End if
+Browser("My Acoount - My Store").page(" My Acoount - My Store").Link("Sign out").Click
+Browser("title:=My Account*").page("title:=My Account*").close
