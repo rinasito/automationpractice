@@ -1,0 +1,36 @@
+#checkout
+SystemUtil.Run "iexplore.exe","http://automationpractice.com/"
+Browser("My Store").page("My store").Sync
+Browser("My Store").page("My store").link(href:"http://automationpractice.com/index.php?id_product=1&controller=product").Click
+Browser("My Store").page("My store").WebButton("add to cart").Click
+waiting until the adding process is done
+Browser("My Store").page("My store").WebButton("proceed to checkout").Click
+waiting until loadeing page is done
+Browser("Order - My Store").page("Shopping-Cart Summary").Sync
+Browser("Order - My Store").page("Shopping-Cart Summary").WebButton("proceed to checkout").Click
+waiting until the loading page  is done
+Browser("Login - My Store").page("Autentication").Sync
+Browser("Login - My Store").page("Autentication").WebEdit("Email Address").Set("acacea@yahoo.com")
+Browser("Login - My Store").page("Autentication").WebEdit("Password").Set("123456")
+Browser("Login - My Store").page("Autentication").WebButton("Sign In").Click
+waiting until the signing in is done
+Browser("Order - My Store").page("Address").Sync
+Browser("Order - My Store").page("Address").WebButton("proceed to checkout").Click
+waiting until the loading page  is done
+Browser("Login - My Store").page("Shipping").Sync
+Browser("Login - My Store").page("Shipping").WebChecklist("I agree to the terms of service and will adhere to them unconditionally").check
+Browser("Login - My Store").page("Shipping").WebButton("proceed to checkout").Click
+waiting until the loading page  is done
+Browser("Login - My Store").page("Payment").Sync
+Browser("Login - My Store").page("Payment").WebButton("pay by bank wire").Click
+waiting until the loading page  is done
+Browser("Login - My Store").page("Order summary").Sync
+Browser("Login - My Store").page("Order summary").WebButton("i confirm my order").Click
+waiting until the loading page  is done
+Browser("Order Confirmation- My Store").page(" Order Confirmation- My Store").Sync
+verification to see if the user successfully checkout
+If Browser("title:=Order Confirmation*").page("title:=Order Confirmation*").link("innertext:=order-confirmation*").exist then
+Msgbox " successfully order"
+End if
+Browser("Order Confirmation- My Store").page(" Order Confirmation- My Store").Link("Sign out").Click
+ Browser("title:=Order Confirmation*").page("title:=Order Confirmation*").close
